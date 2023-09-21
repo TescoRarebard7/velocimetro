@@ -22,18 +22,11 @@ class Velocimetro : AppCompatActivity() {
         setContentView(binding.root)
 
         setup()
+
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-        if (ActivityCompat.checkSelfPermission(this,
-            Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-            ){
-            ActivityCompat.requestPermissions(this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                1
-            )
-        }else{
-            startLocation()
-        }
+        startLocation()
+
     }
 
     private fun setup() {
@@ -74,19 +67,4 @@ class Velocimetro : AppCompatActivity() {
         startLocation()
     }
 
-
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if (requestCode == 1){
-            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                startLocation()
-            }
-        }
-    }
 }
