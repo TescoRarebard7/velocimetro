@@ -90,7 +90,9 @@ class HaversineActivity : AppCompatActivity() {
         val a = sin(dLat / 2).pow(2) + cos(lat1Rad) * cos(lat2Rad) * sin(dLong/2).pow(2)
         val c = 2 * atan2(sqrt(a), sqrt(1-a))
 
-        return radius * c
+        val meters =  radius * c
+
+        return meters * 1000
     }
 
 
